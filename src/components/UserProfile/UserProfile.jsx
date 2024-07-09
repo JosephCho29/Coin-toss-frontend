@@ -6,27 +6,39 @@ import * as profileService from '../../services/profileService';
 
 
 const UserProfile = (props) => {
-    const user = useContext(AuthedUserContext)
-    const [users, setUsers] = useState(null)
-    const { userId } = useParams
+    const [currentUser, setCurrentUser] = useState(null)
+    const { userId } = useParams ()
     useEffect(() => {
         const fetchProfile = async () => {
             const profileData = await profileService.profile(userId);
-            setUsers(profileData);
+            setCurrentUser(profileData);
+            
         };
         fetchProfile();
     }, [userId]);
+    console.log(userId);
+    console.log(currentUser);
     return (
         <main>
             <div>
                 <h1>
-                    {users.username}
+                {currentUser?.user.username}'s profile
                 </h1>
+                Bets:
+                {currentUser?.user.bets.map((bet) => (
+                    <div key={bet._id}>{bet?.title}</div>
+                ))}
+                Events Created:
+                {currentUser?.user.events.map((event) => (
+                    <div key={event._id}>{event?.title}</div>
+                ))}
+                Friends:
+                {currentUser?.user.friends.map((friend) => (
+                    <div key={friend._id}>{friend?.username}</div>
+                ))}
             </div>
         </main>
     )
-
-
 }
 
 
