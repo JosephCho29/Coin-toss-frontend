@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 import FriendList from "./components/FriendList/FriendList";
 import EventDetails from "./components/EventDetails/EventDetails";
 import Events from "./components/Events/Events";
+import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 
 export const AuthedUserContext = createContext(null);
 
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="/" element={<Events events={events} />} />
               {/* <Route path="/profile/:userId" element={<UserProfile user={user} />} />  */}
               <Route path="/events/:eventId" element={<EventDetails />} />
+              <Route path="/events/new" element={<CreateNewEvent  />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
