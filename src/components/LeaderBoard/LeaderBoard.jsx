@@ -5,21 +5,19 @@ import * as userService from "../../services/userService";
 
 
 const LeaderBoard = () => {
+    // const [leaderBoardData, setLeaderBoardData] = useState([])
+    
+    
     const [leaderBoardData, setLeaderBoardData] = useState([])
-    
-    
-    const [users, setUsers] = useState([])
     useEffect(() => {
-        const fetchUsers = async () => {
-            const usersData = await userService.index();
-            console.log(usersData);
-            setUsers(usersData);
-            console.log(users)
+        const fetchBoard = async () => {
+            const boardData = await userService.index();
+          setLeaderBoardData(boardData);
         };
-        fetchUsers();
+        fetchBoard();
     },[] );
 
-console.log(leaderBoardData)
+// console.log(leaderBoardData)
 
 return (
     
@@ -36,8 +34,8 @@ return (
           </tr>
         </thead>
         <tbody>
-          {users
-            .sort((a, b) => b.score - a.score) 
+          {leaderBoardData
+            .sort((a, b) => b.tokens - a.tokens).slice(0,5)
             .map((entry, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>

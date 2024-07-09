@@ -24,6 +24,8 @@ const UserProfile = (props) => {
                 <h1>
                 {currentUser?.user.username}'s profile
                 </h1>
+                TOKENS: 
+                <p>{currentUser?.user.tokens}</p>
                 Bets:
                 {currentUser?.user.bets.map((bet) => (
                     <div key={bet._id}>{bet?.title}</div>

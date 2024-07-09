@@ -35,9 +35,11 @@ const App = () => {
     if (user) fetchAllEvents();
   }, [user]);
 
+
   const handleSignout = () => {
     authService.signout();
     setUser(null);
+    setLoggedInUser(null);
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -46,12 +48,11 @@ const App = () => {
     navigate("/");
   };
 
+
   return (
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
-        <LeaderBoard/>
-
         <Routes>
           {user ? (
             <>

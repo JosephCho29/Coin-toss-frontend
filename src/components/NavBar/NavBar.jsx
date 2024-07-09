@@ -10,7 +10,7 @@ const NavBar = ({ handleSignout }) => {
             {user ? (
                 <nav>
                     <ul>
-                        <li><Link to='/profile'>PROFILE</Link></li>
+                        <li><Link to={`/profile/${user._id}`}>PROFILE</Link></li>
                         <li><Link to='/'>HOME</Link></li>
                         <li><Link to='/players'>FRIENDS</Link></li>
                         <li><Link to="/events/new">NEW BET</Link></li>
