@@ -17,7 +17,7 @@ const CreateNewEvent = (props) => {
       winningCondition,
     };
     // console.log(newEvent);
-  props.handleAddEvent (newEvent)
+  props.handleAddEvent(newEvent)
   
     // Reset form
     setTitle("");
