@@ -22,4 +22,21 @@ const show = async (eventId) => {
     }
 };
 
-export { index, show };
+
+const createEvent = async (eventFormData) => {
+    try {
+        const res = await fetch(`${BASE_URL}`, {
+            method: "POST", 
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` ,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventFormData),
+        });
+        return res.json();
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+export { index, show, createEvent };
