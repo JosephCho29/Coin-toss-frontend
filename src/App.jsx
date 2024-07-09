@@ -12,6 +12,7 @@ import FriendList from "./components/FriendList/FriendList";
 import EventDetails from "./components/EventDetails/EventDetails";
 import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
+import AddFriend from "./components/AddFriend/AddFriend";
 
 export const AuthedUserContext = createContext(null);
 
@@ -51,6 +52,7 @@ const App = () => {
               {/* <Route path="/profile/:userId" element={<UserProfile user={user} />} />  */}
               <Route path="/events/:eventId" element={<EventDetails />} />
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
+              <Route path="/players" element={<AddFriend/>}/>
             </>
           ) : (
             <Route path="/" element={<Landing />} />
