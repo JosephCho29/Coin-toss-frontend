@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CreateNewEvent = () => {
+const CreateNewEvent = (props) => {
   const [title, setTitle] = useState("");
   const [betAmount, setBetAmount] = useState(0);
   const [description, setDescription] = useState("");
@@ -16,8 +16,9 @@ const CreateNewEvent = () => {
       closeOut,
       winningCondition,
     };
-    console.log(newEvent);
-
+    // console.log(newEvent);
+  props.handleAddEvent (newEvent)
+  
     // Reset form
     setTitle("");
     setBetAmount(0);
