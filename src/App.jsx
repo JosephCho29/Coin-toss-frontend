@@ -2,25 +2,20 @@ import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
-import * as profileService from "./services/profileService";
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
-import Dashboard from "./components/Dashboard/Dashboard";
 import NavBar from "./components/NavBar/NavBar";
-import FriendList from "./components/FriendList/FriendList";
 import EventDetails from "./components/EventDetails/EventDetails";
 import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
-import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import UserProfile from "./components/UserProfile/UserProfile";
 
 export const AuthedUserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
-  console.log(user);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
