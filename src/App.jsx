@@ -1,12 +1,8 @@
 import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-
-
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
 import * as profileService from "./services/profileService";
-
-
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
@@ -24,6 +20,7 @@ export const AuthedUserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
+  console.log(user);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
@@ -34,7 +31,6 @@ const App = () => {
     };
     if (user) fetchAllEvents();
   }, [user]);
-
 
   const handleSignout = () => {
     authService.signout();
@@ -48,7 +44,6 @@ const App = () => {
     navigate("/");
   };
 
-
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -57,10 +52,13 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              <Route path="/profile/:userId" element={<UserProfile />} /> 
+              <Route path="/profile/:userId" element={<UserProfile />} />
               <Route path="/events/:eventId" element={<EventDetails />} />
-              <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
-              <Route path="/players" element={<AddFriend/>}/>
+              <Route
+                path="/events/new"
+                element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
+              />
+              <Route path="/players" element={<AddFriend />} />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
