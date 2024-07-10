@@ -1,3 +1,4 @@
+import './AddFriend.css';
 import { useContext, useEffect, useState } from "react";
 import { AuthedUserContext } from "../../App";
 import * as userService from "../../services/userService";
@@ -25,6 +26,7 @@ const AddFriend = () => {
       })}
     </main>
   );
+
 };
 
 export default AddFriend;
