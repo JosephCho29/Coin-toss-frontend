@@ -5,11 +5,50 @@ const index = async () => {
         const res = await fetch(BASE_URL, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
-        // console.log(res)
         return res.json();
     } catch (error) {
         console.log(error);
     }
 };
 
-export { index };
+const deleteUser = async (userId) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      return ;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+const addFriend = async (friendId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${friendId}/add`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUser = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { index, addFriend, getUser, deleteUser  };
