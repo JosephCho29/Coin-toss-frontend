@@ -11,26 +11,25 @@ const SignInForm = (props) => {
         password: '',
     });
 
-    const updateMessage = (msg) => {
-        setMessage(msg);
-    };
+  const updateMessage = (msg) => {
+    setMessage(msg);
+  };
 
-    const handleChange = (e) => {
-        updateMessage('');
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+  const handleChange = (e) => {
+    updateMessage("");
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const user = await authService.signin(formData);
-            console.log(user);
-            props.setUser(user);
-            navigate('/');
-        } catch (err) {
-            updateMessage(err.message);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await authService.signin(formData);
+      props.setUser(user);
+      navigate("/");
+    } catch (err) {
+      updateMessage(err.message);
+    }
+  };
 
     return (
         <div className="signin-background">
