@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { AuthedUserContext } from "../../App";
 import * as eventService from "../../services/eventService";
 
 const EventDetails = (props) => {
+    const user = useContext(AuthedUserContext);
     const [event, setEvent] = useState(null);
     const { eventId } = useParams();
     useEffect(() => {
@@ -24,6 +26,13 @@ const EventDetails = (props) => {
             {event?.betters.map((better) => (
                 <div key={better._id}>{better?.better.username}</div>
             ))}
+            {event?.owner === user._id && (
+    <>
+      <Link to={`/events/${eventId}/edit`}>Edit</Link>
+
+      
+    </>
+  )}
         </main>
     );
 };

@@ -26,11 +26,12 @@ const show = async (eventId) => {
 const createEvent = async (eventFormData) => {
     try {
         const res = await fetch(`${BASE_URL}`, {
-            method: "POST", 
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` ,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(eventFormData),
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(eventFormData),
         });
         return res.json();
     } catch (error) {
@@ -38,5 +39,22 @@ const createEvent = async (eventFormData) => {
     }
 };
 
+const update = async function update(eventId, eventFormData) {
+    try {
+        console.log(`${BASE_URL}/${eventId}`)
+        const res = await fetch(`${BASE_URL}/${eventId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(eventFormData),
+        });
+        return res;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-export { index, show, createEvent };
+
+export { index, show, createEvent, update };

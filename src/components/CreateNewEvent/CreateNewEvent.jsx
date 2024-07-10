@@ -1,41 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import * as eventService from '../../services/eventService';
 
 const CreateNewEvent = (props) => {
-  const [title, setTitle] = useState("");
-  const [betAmount, setBetAmount] = useState(0);
-  const [description, setDescription] = useState("");
-  const [closeOut, setCloseOut] = useState(0);
-  const [winningCondition, setWinningCondition] = useState("")
+  const { eventId } = useParams();
+  const [formData, setFormData] = useState({
+    title: "",
+    betAmount: 0,
+    description: "",
+    closeOut: 0,
+    winningCondition: "",
+  });
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const eventData = await eventService.show(eventId);
+      setFormData(eventData);
+    };
+    if (eventId) fetchEvent();
+  }, [eventId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newEvent = {
-      title,
-      betAmount,
-      description,
-      closeOut,
-      winningCondition,
-    };
-    // console.log(newEvent);
-  props.handleAddEvent (newEvent)
-  
-    // Reset form
-    setTitle("");
-    setBetAmount(0);
-    setDescription("");
-    setCloseOut(0);
-    setWinningCondition("");
+
+    if (eventId) {
+      props.handleUpdateEvent(eventId, formData);
+    } else {
+      props.handleAddEvent(formData);
+    }
+
+    // Reset form fields
+    setFormData({
+      title: "",
+      betAmount: 0,
+      description: "",
+      closeOut: 0,
+      winningCondition: "",
+    });
   };
 
   return (
-    
     <form onSubmit={handleSubmit}>
       <div>
         <label>Bet Title:</label>
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={formData.title}
+          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           required
         />
       </div>
@@ -43,16 +54,16 @@ const CreateNewEvent = (props) => {
         <label>Amount:</label>
         <input
           type="number"
-          value={betAmount}
-          onChange={(e) => setBetAmount(e.target.value)}
+          value={formData.betAmount}
+          onChange={(e) => setFormData({ ...formData, betAmount: parseInt(e.target.value) })}
           required
         />
       </div>
       <div>
         <label>Description of the Bet:</label>
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={formData.description}
+          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           required
         />
       </div>
@@ -60,7 +71,7 @@ const CreateNewEvent = (props) => {
         <label>Length of the Bet:</label>
         <input
           type="text"
-          value={closeOut}
+          value={formData.closeOut}
           onChange={(e) => setCloseOut(e.target.value)}
           required
         />
@@ -69,8 +80,8 @@ const CreateNewEvent = (props) => {
         <label>Win Condition:</label>
         <input
           type="text"
-          value={winningCondition}
-          onChange={(e) => setWinningCondition(e.target.value)}
+          value={formData.winningCondition}
+          onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
           required
         />
       </div>

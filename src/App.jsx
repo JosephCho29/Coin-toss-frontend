@@ -40,6 +40,16 @@ const App = () => {
     navigate("/");
   };
 
+  const handleUpdateEvent = async (eventId, eventFormData) => {
+    console.log('eventId:', eventId, 'eventFormData:', eventFormData);
+
+    const updateEvent = await eventService.update(eventId, eventFormData);
+
+    setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
+    
+    navigate(`/event/${eventId}`);
+  };
+
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -51,6 +61,7 @@ const App = () => {
               <Route path="/" element={<Events events={events} />} />
               {/* <Route path="/profile/:userId" element={<UserProfile user={user} />} />  */}
               <Route path="/events/:eventId" element={<EventDetails />} />
+              <Route path="/events/:eventId/edit" element={<CreateNewEvent handleUpdateEvent={handleUpdateEvent} />}/>
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
               <Route path="/players" element={<AddFriend/>}/>
             </>
