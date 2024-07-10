@@ -1,3 +1,4 @@
+import './AddFriend.css';
 import { useContext, useEffect, useState } from "react";
 import { AuthedUserContext } from "../../App";
 import * as userService from "../../services/userService";
@@ -15,10 +16,12 @@ const AddFriend = () => {
     return (
        <main>
         {users?.map((user) => {
-            return <Link key={user._id} to={`/profile/${user._id}`}>
+            return (
+                <Link key={user._id} to={`/profile/${user._id}`}>
                 <p>{user?.username}</p>
                 <button>Add Friend</button>
-            </Link>
+                </Link>
+            );
         })}
        </main>
     );
