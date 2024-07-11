@@ -7,7 +7,6 @@ const EventDetails = ({ handleBet }) => {
   const [winningCondition, setWinningCondition] = useState("");
   const [amount, setAmount] = useState(0);
   const { eventId } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvent = async () => {
