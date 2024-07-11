@@ -4,25 +4,22 @@ import { useState, useEffect, useContext } from 'react';
 import * as profileService from '../../services/profileService';
 import * as userService from '../../services/userService'
 
-
-import { Link, useParams } from "react-router-dom";
-import { AuthedUserContext } from "../../App";
-import { useState, useEffect, useContext } from "react";
-import * as profileService from "../../services/profileService";
-
 const UserProfile = (props) => {
+    const user = useContext(AuthedUserContext)
     const [currentUser, setCurrentUser] = useState(null)
     const { userId } = useParams ()
     useEffect(() => {
         const fetchProfile = async () => {
             const profileData = await profileService.profile(userId);
-            const userData = await userService.show(userId); 
-            const combinedData = { ...profileData, ...userData };
-            setCurrentUser(combinedData);
+            
+            
+            setCurrentUser(profileData);
            
         };
         fetchProfile();
     }, [userId]);
+
+    
 
 
 
@@ -48,12 +45,12 @@ const UserProfile = (props) => {
                 ))}
             </div>
 
-            {currentUser === currentUser && (
-            <>
-             <Link to={`/profile/${userId}/edit`}>Edit</Link>
+            {user._id === currentUser?._id && (
+            
+             
 
               <button onClick={() => props.handleDeleteUser(userId)}>Delete</button>
-            </>
+            
           )}
 
         </main>

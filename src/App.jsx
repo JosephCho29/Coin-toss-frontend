@@ -1,7 +1,7 @@
 import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
-import * as eventService from "./services/eventService";
+import * as eventService from "./services/eventService/";
 import * as userService from './services/userService'
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
@@ -12,6 +12,8 @@ import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
 import UserProfile from "./components/UserProfile/UserProfile";
+
+
 
 export const AuthedUserContext = createContext(null);
 
@@ -33,11 +35,24 @@ const App = () => {
     setUser(null);
   };
 
+  const handleBet = async (eventId, betFormData) => {
+    await eventService.bet(eventId, betFormData);
+    navigate("/events/" + eventId);
+  };
+
   const handleAddEvent = async (eventFormData) => {
     const newEvent = await eventService.createEvent(eventFormData);
     setEvents([newEvent, ...events]);
     navigate("/");
   };
+
+  const handleAddFriend = async (friendId) => {
+    await userService.addFriend(friendId);
+    // await userService.updateToken();
+    // setUser(authService.getUser());
+    navigate("/profile/" + user._id);
+  };
+
   
   const handleDeleteUser = async (userId) => {
     await userService.deleteUser(userId);

@@ -26,7 +26,6 @@ const CreateNewEvent = (props) => {
     if (eventId) {
       props.handleUpdateEvent(eventId, formData);
     } else {
-      console.log('create event');
       props.handleAddEvent(formData);
     }
 
