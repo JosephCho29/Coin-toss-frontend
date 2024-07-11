@@ -18,7 +18,7 @@ const EventDetails = ({ handleBet }) => {
       setAmount(eventData.betAmount);
     };
     fetchEvent();
-  }, [eventId, navigate]);
+  }, [eventId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
