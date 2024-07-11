@@ -1,8 +1,10 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import * as eventService from "../../services/eventService";
+import { AuthedUserContext } from "../../App";
 
 const EventDetails = ({ handleBet }) => {
+  const user = useContext(AuthedUserContext);
   const [event, setEvent] = useState(null);
   const [winningCondition, setWinningCondition] = useState("");
   const [amount, setAmount] = useState(0);
@@ -54,6 +56,10 @@ const EventDetails = ({ handleBet }) => {
       {event?.betters.map((better) => (
         <div key={better._id}>{better?.better.username}</div>
       ))}
+      {event?.owner === user._id && (
+    <>
+      <Link to={`/events/${eventId}/edit`}>Edit</Link>
+  </>
     </main>
   );
 };
