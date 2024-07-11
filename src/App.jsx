@@ -37,7 +37,8 @@ const App = () => {
 
   const handleBet = async (eventId, betFormData) => {
     await eventService.bet(eventId, betFormData);
-    navigate("/events/" + eventId);
+    // navigate("/events/" + eventId);
+    navigate("/")
   };
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
