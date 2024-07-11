@@ -72,7 +72,7 @@ const CreateNewEvent = (props) => {
         <input
           type="text"
           value={formData.closeOut}
-          onChange={(e) => setCloseOut(e.target.value)}
+          onChange={(e) => setFormData({ ...formData, closeOut: e.target.value })}
           required
         />
       </div>

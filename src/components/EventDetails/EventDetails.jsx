@@ -33,6 +33,7 @@ const EventDetails = ({ handleBet }) => {
   };
 
   return (
+    <>
     <main>
       <h2>{event?.title}</h2>
       <p>Description: {event?.description}</p>
@@ -57,11 +58,11 @@ const EventDetails = ({ handleBet }) => {
         <div key={better._id}>{better?.better.username}</div>
       ))}
       {event?.owner === user._id && (
-    <>
+
       <Link to={`/events/${eventId}/edit`}>Edit</Link>
-  </>
+      )};
     </main>
+    </>
   );
 };
-
 export default EventDetails;
