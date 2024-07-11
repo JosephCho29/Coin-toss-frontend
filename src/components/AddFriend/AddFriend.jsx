@@ -1,26 +1,41 @@
+import "./AddFriend.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthedUserContext } from "../../App";
 import * as userService from "../../services/userService";
-import { Link } from "react-router-dom";
+import * as authService from "../../services/authService";
+import { Link, useNavigate } from "react-router-dom";
 
-const AddFriend = () => {
-  const user = useContext(AuthedUserContext);
-  const [users, setUsers] = useState([]);
+const AddFriend = ({ handleAddFriend }) => {
+  const loggedInUser = useContext(AuthedUserContext);
+  const [allUsers, setAllUsers] = useState([]);
+
   useEffect(() => {
     const fetchUsers = async () => {
-      const usersData = await userService.index();
-      setUsers(usersData);
+      const allUsersData = await userService.index();
+      const filteredUsers = allUsersData.filter(
+        (user) => user._id !== loggedInUser._id,
+      );
+      setAllUsers(filteredUsers);
     };
     fetchUsers();
-  }, []);
+  }, [loggedInUser]);
+
   return (
     <main>
-      {users?.map((user) => {
+      {allUsers?.map((user) => {
         return (
-          <Link key={user._id} to={`/profile/${user._id}`}>
-            <p>{user?.username}</p>
-            <button>Add Friend</button>
-          </Link>
+          <div key={user._id}>
+            {!loggedInUser?.friends.includes(user._id) && (
+              <Link to={`/profile/${user._id}`}>
+                <p>{user?.username}</p>
+              </Link>
+            )}
+            {!loggedInUser?.friends.includes(user._id) && (
+              <button onClick={() => handleAddFriend(user._id)}>
+                Add Friend
+              </button>
+            )}
+          </div>
         );
       })}
     </main>

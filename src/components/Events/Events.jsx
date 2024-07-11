@@ -56,6 +56,7 @@ const Events = (props) => {
         </div>
       </div>
     </>
+
   );
 };
 
