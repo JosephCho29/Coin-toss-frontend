@@ -41,15 +41,13 @@ const App = () => {
 
   const handleAddFriend = async (friendId) => {
     await userService.addFriend(friendId);
-    // await authService.updateUser(user);
+    // await userService.updateToken();
     // setUser(authService.getUser());
-    // console.log(user);
     navigate("/profile/" + user._id);
   };
 
   const handleBet = async (eventId, betFormData) => {
     await eventService.bet(eventId, betFormData);
-
     navigate("/events/" + eventId);
   };
 
