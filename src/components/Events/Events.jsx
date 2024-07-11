@@ -28,7 +28,7 @@ const Events = (props) => {
   const user = useContext(AuthedUserContext);
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container">
         <div className="left-side">
           <table className="events-table">

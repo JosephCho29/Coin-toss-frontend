@@ -56,7 +56,7 @@ const Landing = () => {
 
     return (
         <div id="root">
-            <main>
+            <landing-main>
                 <div className="marquee">
                     <div className="marquee-content">
                         WELCOME TO THE COIN - BET YOUR FAVORITE TEAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -100,7 +100,7 @@ const Landing = () => {
                         <button className="button" onClick={handleBetTeamsClick}>BET TEAMS</button>
                     </div>
                 </div>
-            </main>
+            </landing-main>
             <div className="bottom-image-container">
                 <img src={bottomImage} alt="Bottom Image" className="bottom-image" />
             </div>

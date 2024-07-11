@@ -2,10 +2,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* 调整高度以适应布局 */
+    height: 100vh; 
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #000; /* 设置整体背景为黑色 */
+    background-color: #000; 
 }
 
 .navbar {
@@ -54,12 +54,12 @@ body {
 }
 
 .left-side {
-    flex: 1;
+    flex: 2;
     padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #121212;
+    background-color: black;
     color: white;
 }
 
@@ -68,30 +68,23 @@ body {
     padding: 60px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
     justify-content: center;
-    background-color: #121212;
-    color: white;
+    background-color:black;
+    margin-top: -900px;
+    max-height: 20%;
 }
 
 .right-side .leaderboard, .right-side .friendlist {
-    background-color: #1e1e1e;
-    padding: 10px;
     border-radius: 10px;
     width: 80%;
    
 }
 
-.right-side .friendlist  {
-    color: white;
-   
-}
 
 
 
 
 .events-table {
-    margin-top: -600px;
     width: 100%;
     border-collapse: collapse;
 }

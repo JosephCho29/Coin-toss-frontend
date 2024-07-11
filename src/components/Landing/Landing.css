@@ -63,7 +63,7 @@ body, html {
     100% { transform: translateX(-100%); }
 }
 
-main {
+.landing-main {
     margin-top: 1260px;
     display: flex;
     flex-direction: column;
@@ -71,6 +71,7 @@ main {
     background-color: #000;
     width: 100%;
     align-items: center;
+    
 }
 
 .carousel {
@@ -82,6 +83,7 @@ main {
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     background-color: #333;
+    margin-top: 1100px;
 }
 
 .carousel-images {
@@ -193,7 +195,7 @@ main {
     padding: 120px;
     background-color: #000;
     width: 100%;
-    max-width: 1200px;
+   
     margin: 0 auto;
 }
 
