@@ -26,7 +26,7 @@ const App = () => {
       setEvents(eventsData);
     };
     if (user) fetchAllEvents();
-  }, [user]);
+  }, [navigate, user]);
 
   const handleSignout = () => {
     authService.signout();
@@ -40,10 +40,17 @@ const App = () => {
   };
 
   const handleAddFriend = async (friendId) => {
-    await userService.addFriend(friendId, user._id);
-    setUser(authService.getUser());
-    console.log(user);
+    await userService.addFriend(friendId);
+    // await authService.updateUser(user);
+    // setUser(authService.getUser());
+    // console.log(user);
     navigate("/profile/" + user._id);
+  };
+
+  const handleBet = async (eventId, betFormData) => {
+    await eventService.bet(eventId, betFormData);
+
+    navigate("/events/" + eventId);
   };
 
   return (
@@ -55,7 +62,10 @@ const App = () => {
             <>
               <Route path="/" element={<Events events={events} />} />
               <Route path="/profile/:userId" element={<UserProfile />} />
-              <Route path="/events/:eventId" element={<EventDetails />} />
+              <Route
+                path="/events/:eventId"
+                element={<EventDetails handleBet={handleBet} />}
+              />
               <Route
                 path="/events/new"
                 element={<CreateNewEvent handleAddEvent={handleAddEvent} />}

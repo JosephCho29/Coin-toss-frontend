@@ -11,6 +11,24 @@ const index = async () => {
   }
 };
 
+const updateToken = async (user) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/updateToken`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+    const json = await res.json();
+    if (json.error) {
+      throw new Error(json.error);
+    }
+    localStorage.setItem("token", json.token);
+    return json;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const addFriend = async (friendId) => {
   try {
     const res = await fetch(`${BASE_URL}/${friendId}/add`, {
@@ -25,7 +43,7 @@ const addFriend = async (friendId) => {
   }
 };
 
-const getUser = async (userId) => {
+const getUserName = async (userId) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -36,4 +54,4 @@ const getUser = async (userId) => {
   }
 };
 
-export { index, addFriend, getUser };
+export { index, addFriend, getUserName, updateToken };

@@ -10,7 +10,7 @@ const FriendList = () => {
   useEffect(() => {
     const fetchAllFriends = async () => {
       const friendsData = await Promise.all(
-        user.friends.map((friendId) => userService.getUser(friendId)),
+        user.friends.map((friendId) => userService.getUserName(friendId)),
       );
       setFriends(friendsData);
     };

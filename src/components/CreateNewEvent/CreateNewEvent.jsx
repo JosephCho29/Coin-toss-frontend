@@ -16,7 +16,6 @@ const CreateNewEvent = (props) => {
       closeOut,
       winningCondition,
     };
-
     props.handleAddEvent(newEvent);
 
     setTitle("");
@@ -78,4 +77,3 @@ const CreateNewEvent = (props) => {
 };
 
 export default CreateNewEvent;
-
