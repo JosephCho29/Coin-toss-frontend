@@ -26,4 +26,30 @@ const deleteUser = async (userId) => {
   };
 
 
-export { index, deleteUser };
+// const show = async (userId) => {
+//     try {
+//       const res = await fetch(`${BASE_URL}/${userId}`, {
+//         method: 'DELETE',
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem('token')}`,
+//         },
+//       });
+//       return ;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+ const show = async (userId) => {
+    try {
+      const response = await fetch(`${BASE_URL}/${userId}`);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const userData = await response.json();
+      return userData;
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      throw error;
+    }
+  };
+
+export { index, deleteUser, show };

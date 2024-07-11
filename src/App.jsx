@@ -63,6 +63,7 @@ const App = () => {
               <Route path="/events/:eventId" element={<EventDetails />} />
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
               <Route path="/players" element={<AddFriend/>}/>
+              <Route path="/profile/:userId/edit" element={<UserProfile />} />
               
             </>
           ) : (
