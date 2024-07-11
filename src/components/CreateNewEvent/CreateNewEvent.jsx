@@ -39,7 +39,7 @@ const CreateNewEvent = (props) => {
     });
   };
 
-  };
+
 
   return (
     <form onSubmit={handleSubmit}>

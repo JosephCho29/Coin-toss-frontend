@@ -20,8 +20,7 @@ const UserProfile = (props) => {
     }, [userId]);
 
     
-
-
+console.log(user?._id, currentUser?.user._id);
 
     return (
         <main>
@@ -45,7 +44,7 @@ const UserProfile = (props) => {
                 ))}
             </div>
 
-            {user._id === currentUser?._id && (
+            {user._id === currentUser?.user._id && (
             
              
 

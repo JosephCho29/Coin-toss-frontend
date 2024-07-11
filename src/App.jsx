@@ -40,6 +40,17 @@ const App = () => {
     navigate("/events/" + eventId);
   };
 
+  const handleUpdateEvent = async (eventId, eventFormData) => {
+    console.log('eventId:', eventId, 'eventFormData:', eventFormData);
+
+    const updateEvent = await eventService.update(eventId, eventFormData);
+
+    setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
+
+    navigate(`/events/${eventId}`);
+  };
+
+
   const handleAddEvent = async (eventFormData) => {
     const newEvent = await eventService.createEvent(eventFormData);
     setEvents([newEvent, ...events]);
@@ -58,7 +69,7 @@ const App = () => {
     await userService.deleteUser(userId);
     
     setUser(null)
-    navigate('/landing')
+    navigate('/')
   };
 
   return (
@@ -73,6 +84,7 @@ const App = () => {
               <Route path="/players" element={<AddFriend handleAddFriend={handleAddFriend} />} />
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
               <Route path="/profile/:userId" element={<UserProfile handleDeleteUser={handleDeleteUser}/>} />
+              <Route path="/events/:eventId/edit" element={<CreateNewEvent handleUpdateEvent={handleUpdateEvent} />}/>
             </>
           ) : (
             <Route path="/" element={<Landing />} />
