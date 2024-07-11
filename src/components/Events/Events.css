@@ -1,0 +1,122 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 调整高度以适应布局 */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* 设置整体背景为黑色 */
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e1e;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .nav-left, .navbar .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: -10px;
+}
+
+.navbar .nav-left a, .navbar .nav-right span {
+    margin-right: 30px;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar .nav-left a:hover {
+    border-bottom: 2px solid;
+}
+/* navbar */
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 600px;
+    background-color: #000; 
+  
+}
+
+.left-side {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #121212;
+    color: white;
+}
+
+.right-side {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    justify-content: center;
+    background-color: #121212;
+    color: white;
+}
+
+.right-side .leaderboard, .right-side .friendlist {
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+   
+}
+
+.right-side .friendlist  {
+    color: white;
+   
+}
+
+
+
+
+.events-table {
+    margin-top: -600px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.events-table th,
+.events-table td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+}
+
+.events-table th {
+    background-color: #333;
+}
+
+.events-table tr:hover {
+    background-color: #333333;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Landing.css';
 import nflTeamsCollage from './PIC/logo.png'; 
-import image2 from './PIC/image2.jpg'; 
-import image3 from './PIC/image3.jpg'; 
-import image4 from './PIC/logo.png'; 
-import image5 from './PIC/logo.png'; 
+import image2 from './PIC/image3.jpg'; 
+import image3 from './PIC/image2.jpg'; 
+import image4 from './PIC/image4.jpg'; 
+import image5 from './PIC/image5.jpg'; 
 import video1 from './PIC/landing.mp4';  
 import bottomImage from './PIC/BOT.jpg';  
 
@@ -74,6 +74,11 @@ const Landing = () => {
 
                 <Carousel />
 
+                <div className="info-text">
+                    <h2>Explore the world of Cointoss sports and gaming</h2>
+                    <p>The best place to bet on sports, play online games, and build your team.</p>
+                </div>
+
                 <div className="content">
                     <div className="image-container">
                         <img 
@@ -104,8 +109,6 @@ const Landing = () => {
 };
 
 export default Landing;
-
-
 
 
 
