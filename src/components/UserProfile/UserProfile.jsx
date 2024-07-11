@@ -11,13 +11,15 @@ const UserProfile = (props) => {
     useEffect(() => {
         const fetchProfile = async () => {
             const profileData = await profileService.profile(userId);
-            setCurrentUser(profileData);
             
+            setCurrentUser(profileData);
+           
         };
         fetchProfile();
     }, [userId]);
-    console.log(userId);
-    console.log(currentUser);
+
+
+
     return (
         <main>
             <div>
@@ -39,7 +41,16 @@ const UserProfile = (props) => {
                     <div key={friend._id}>{friend?.username}</div>
                 ))}
             </div>
+
+            {currentUser === currentUser && (
+            <>
+              <button onClick={() => props.handleDeleteUser(userId)}>Delete</button>
+            </>
+          )}
+
         </main>
+
+      
     )
 }
 

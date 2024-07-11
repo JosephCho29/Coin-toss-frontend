@@ -2,6 +2,8 @@ import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
+import * as profileService from "./services/profileService";
+import * as userService from './services/userService';
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
@@ -38,6 +40,12 @@ const App = () => {
     setEvents([newEvent, ...events]);
     navigate("/");
   };
+  const handleDeleteUser = async (userId) => {
+    await userService.deleteUser(userId);
+    
+    setUser(null)
+    navigate('/landing')
+  };
 
   return (
     <>
@@ -47,13 +55,10 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              <Route path="/profile/:userId" element={<UserProfile />} />
+              <Route path="/profile/:userId" element={<UserProfile handleDeleteUser={handleDeleteUser}/>} /> 
               <Route path="/events/:eventId" element={<EventDetails />} />
-              <Route
-                path="/events/new"
-                element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
-              />
-              <Route path="/players" element={<AddFriend />} />
+              <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
+              <Route path="/players" element={<AddFriend/>}/>
             </>
           ) : (
             <Route path="/" element={<Landing />} />

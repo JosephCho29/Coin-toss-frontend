@@ -30,7 +30,6 @@ const SignInForm = (props) => {
       updateMessage(err.message);
     }
   };
-
     return (
         <div className="signin-background">
             <main className="signin-container">
