@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Landing.css';
 import nflTeamsCollage from './PIC/logo.png'; 
-import image2 from './PIC/image2.jpg'; 
-import image3 from './PIC/image3.jpg'; 
-import image4 from './PIC/logo.png'; 
-import image5 from './PIC/logo.png'; 
+import image2 from './PIC/image3.jpg'; 
+import image3 from './PIC/image2.jpg'; 
+import image4 from './PIC/image4.jpg'; 
+import image5 from './PIC/image5.jpg'; 
 import video1 from './PIC/landing.mp4';  
 import bottomImage from './PIC/BOT.jpg';  
 
@@ -56,7 +56,7 @@ const Landing = () => {
 
     return (
         <div id="root">
-            <main>
+            <landing-main>
                 <div className="marquee">
                     <div className="marquee-content">
                         WELCOME TO THE COIN - BET YOUR FAVORITE TEAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -73,6 +73,11 @@ const Landing = () => {
                 </div>
 
                 <Carousel />
+
+                <div className="info-text">
+                    <h2>Explore the world of Cointoss sports and gaming</h2>
+                    <p>The best place to bet on sports, play online games, and build your team.</p>
+                </div>
 
                 <div className="content">
                     <div className="image-container">
@@ -95,7 +100,7 @@ const Landing = () => {
                         <button className="button" onClick={handleBetTeamsClick}>BET TEAMS</button>
                     </div>
                 </div>
-            </main>
+            </landing-main>
             <div className="bottom-image-container">
                 <img src={bottomImage} alt="Bottom Image" className="bottom-image" />
             </div>
@@ -104,8 +109,6 @@ const Landing = () => {
 };
 
 export default Landing;
-
-
 
 
 
