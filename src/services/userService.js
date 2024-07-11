@@ -36,4 +36,18 @@ const getUserName = async (userId) => {
   }
 };
 
-export { index, addFriend, getUserName };
+const deleteUser = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { index, addFriend, getUserName, deleteUser };

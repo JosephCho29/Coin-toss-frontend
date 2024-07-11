@@ -1,0 +1,94 @@
+
+.signup-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../SignInForm/login.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+.signup-container {
+    background: rgba(6, 12, 20, 0.549); 
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1200px;
+    filter: brightness(1.2);
+    margin-top: 1200px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+button {
+    background-color: #007BFF;
+    color: blue;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+button:hover {
+    opacity: 1;
+    background-color: #0056b3;
+    color: blue;
+}
+
+button + button {
+    background-color: #6c757d;
+    color: blue;
+}
+
+button + button:hover {
+    background-color: #5a6268;
+    color: blue;
+}
+
+p {
+    color: red;
+}
+
+p a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+

@@ -1,8 +1,10 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import * as eventService from "../../services/eventService";
+import { AuthedUserContext } from "../../App";
 
 const EventDetails = ({ handleBet }) => {
+  const user = useContext(AuthedUserContext);
   const [event, setEvent] = useState(null);
   const [winningCondition, setWinningCondition] = useState("");
   const [amount, setAmount] = useState(0);
@@ -15,7 +17,7 @@ const EventDetails = ({ handleBet }) => {
       setAmount(eventData.betAmount);
     };
     fetchEvent();
-  }, [eventId, navigate]);
+  }, [eventId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,6 +32,7 @@ const EventDetails = ({ handleBet }) => {
   };
 
   return (
+    <>
     <main>
       <h2>{event?.title}</h2>
       <p>Description: {event?.description}</p>
@@ -46,15 +49,19 @@ const EventDetails = ({ handleBet }) => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Bet</button>
       </form>
       <h2>Bettors</h2>
       <p>{new Date(event?.closeOut).toLocaleString()}</p>
       {event?.betters.map((better) => (
         <div key={better._id}>{better?.better.username}</div>
       ))}
+      {event?.owner === user._id && (
+
+      <Link to={`/events/${eventId}/edit`}>Edit</Link>
+      )}
     </main>
+    </>
   );
 };
-
 export default EventDetails;

@@ -13,3 +13,5 @@ THINGS TO ADD
 - Add a friend to the bet
 - Private Bet - with a friend 
 - 
+
+event.betters > 0 cannot - delete - bet ??

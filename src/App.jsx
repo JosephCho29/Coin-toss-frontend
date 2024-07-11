@@ -1,7 +1,7 @@
 import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
-import * as eventService from "./services/eventService";
+import * as eventService from "./services/eventService/";
 import * as userService from "./services/userService";
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
@@ -33,6 +33,24 @@ const App = () => {
     setUser(null);
   };
 
+  const handleBet = async (eventId, betFormData) => {
+    await eventService.bet(eventId, betFormData);
+    // navigate("/events/" + eventId);
+    navigate("/");
+  };
+
+  const handleUpdateEvent = async (eventId, eventFormData) => {
+    console.log("eventId:", eventId, "eventFormData:", eventFormData);
+
+    const updateEvent = await eventService.update(eventId, eventFormData);
+
+    setEvents(
+      events.map((event) => (eventId === event._id ? updateEvent : event)),
+    );
+
+    navigate(`/events/${eventId}`);
+  };
+
   const handleAddEvent = async (eventFormData) => {
     const newEvent = await eventService.createEvent(eventFormData);
     setEvents([newEvent, ...events]);
@@ -46,9 +64,11 @@ const App = () => {
     navigate("/profile/" + user._id);
   };
 
-  const handleBet = async (eventId, betFormData) => {
-    await eventService.bet(eventId, betFormData);
-    navigate("/events/" + eventId);
+  const handleDeleteUser = async (userId) => {
+    await userService.deleteUser(userId);
+
+    setUser(null);
+    navigate("/");
   };
 
   return (
@@ -59,18 +79,27 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              <Route path="/profile/:userId" element={<UserProfile />} />
               <Route
                 path="/events/:eventId"
                 element={<EventDetails handleBet={handleBet} />}
+              />
+              <Route
+                path="/players"
+                element={<AddFriend handleAddFriend={handleAddFriend} />}
               />
               <Route
                 path="/events/new"
                 element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
               />
               <Route
-                path="/players"
-                element={<AddFriend handleAddFriend={handleAddFriend} />}
+                path="/profile/:userId"
+                element={<UserProfile handleDeleteUser={handleDeleteUser} />}
+              />
+              <Route
+                path="/events/:eventId/edit"
+                element={
+                  <CreateNewEvent handleUpdateEvent={handleUpdateEvent} />
+                }
               />
             </>
           ) : (
@@ -78,6 +107,7 @@ const App = () => {
           )}
           <Route path="/signup" element={<SignUpForm setUser={setUser} />} />
           <Route path="/signin" element={<SignInForm setUser={setUser} />} />
+          <Route path="*" element={<h1>Page Not HERE</h1>} />
         </Routes>
       </AuthedUserContext.Provider>
     </>
