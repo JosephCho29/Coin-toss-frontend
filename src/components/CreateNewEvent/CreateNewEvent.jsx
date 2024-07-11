@@ -5,7 +5,7 @@ const CreateNewEvent = (props) => {
   const [betAmount, setBetAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [closeOut, setCloseOut] = useState(0);
-  const [winningCondition, setWinningCondition] = useState("")
+  const [winningCondition, setWinningCondition] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,10 +16,9 @@ const CreateNewEvent = (props) => {
       closeOut,
       winningCondition,
     };
-    // console.log(newEvent);
-  props.handleAddEvent(newEvent)
-  
-    // Reset form
+
+    props.handleAddEvent(newEvent);
+
     setTitle("");
     setBetAmount(0);
     setDescription("");
@@ -28,7 +27,6 @@ const CreateNewEvent = (props) => {
   };
 
   return (
-    
     <form onSubmit={handleSubmit}>
       <div>
         <label>Bet Title:</label>
@@ -80,3 +78,4 @@ const CreateNewEvent = (props) => {
 };
 
 export default CreateNewEvent;
+

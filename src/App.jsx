@@ -2,6 +2,7 @@ import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
+import * as userService from "./services/userService";
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
@@ -30,13 +31,19 @@ const App = () => {
   const handleSignout = () => {
     authService.signout();
     setUser(null);
-    setLoggedInUser(null);
   };
 
   const handleAddEvent = async (eventFormData) => {
     const newEvent = await eventService.createEvent(eventFormData);
     setEvents([newEvent, ...events]);
     navigate("/");
+  };
+
+  const handleAddFriend = async (friendId) => {
+    await userService.addFriend(friendId, user._id);
+    setUser(authService.getUser());
+    console.log(user);
+    navigate("/profile/" + user._id);
   };
 
   return (
@@ -53,7 +60,10 @@ const App = () => {
                 path="/events/new"
                 element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
               />
-              <Route path="/players" element={<AddFriend />} />
+              <Route
+                path="/players"
+                element={<AddFriend handleAddFriend={handleAddFriend} />}
+              />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
