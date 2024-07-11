@@ -3,16 +3,16 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
 import * as profileService from "./services/profileService";
+import * as userService from './services/userService';
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
-import Dashboard from "./components/Dashboard/Dashboard";
 import NavBar from "./components/NavBar/NavBar";
-import FriendList from "./components/FriendList/FriendList";
 import EventDetails from "./components/EventDetails/EventDetails";
 import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 export const AuthedUserContext = createContext(null);
 
@@ -27,7 +27,7 @@ const App = () => {
       setEvents(eventsData);
     };
     if (user) fetchAllEvents();
-  }, [user]);
+  }, [navigate, user]);
 
   const handleSignout = () => {
     authService.signout();
@@ -38,6 +38,26 @@ const App = () => {
     const newEvent = await eventService.createEvent(eventFormData);
     setEvents([newEvent, ...events]);
     navigate("/");
+  };
+  const handleDeleteUser = async (userId) => {
+    await userService.deleteUser(userId);
+    
+    setUser(null)
+    navigate('/landing')
+  };
+
+  const handleAddFriend = async (friendId) => {
+    await userService.addFriend(friendId);
+    // await authService.updateUser(user);
+    // setUser(authService.getUser());
+    // console.log(user);
+    navigate("/profile/" + user._id);
+  };
+
+  const handleBet = async (eventId, betFormData) => {
+    await eventService.bet(eventId, betFormData);
+
+    navigate("/events/" + eventId);
   };
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
@@ -54,16 +74,16 @@ const App = () => {
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
-
         <Routes>
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              {/* <Route path="/profile/:userId" element={<UserProfile user={user} />} />  */}
-              <Route path="/events/:eventId" element={<EventDetails />} />
               <Route path="/events/:eventId/edit" element={<CreateNewEvent handleUpdateEvent={handleUpdateEvent} />}/>
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
-              <Route path="/players" element={<AddFriend/>}/>
+              <Route path="/profile/:userId" element={<UserProfile />} />
+              <Route path="/events/:eventId" element={<EventDetails handleBet={handleBet} />}/>
+              <Route path="/players" element={<AddFriend handleAddFriend={handleAddFriend} />} />
+
             </>
           ) : (
             <Route path="/" element={<Landing />} />
