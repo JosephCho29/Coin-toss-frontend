@@ -7,21 +7,17 @@ import * as userService from './services/userService';
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
-import Dashboard from "./components/Dashboard/Dashboard";
 import NavBar from "./components/NavBar/NavBar";
-import FriendList from "./components/FriendList/FriendList";
 import EventDetails from "./components/EventDetails/EventDetails";
 import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
-import LeaderBoard from "./components/LeaderBoard/LeaderBoard";
 import UserProfile from "./components/UserProfile/UserProfile";
 
 export const AuthedUserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser());
-  console.log(user);
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
@@ -31,12 +27,11 @@ const App = () => {
       setEvents(eventsData);
     };
     if (user) fetchAllEvents();
-  }, [user]);
+  }, [navigate, user]);
 
   const handleSignout = () => {
     authService.signout();
     setUser(null);
-    setLoggedInUser(null);
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -51,6 +46,20 @@ const App = () => {
     navigate('/landing')
   };
 
+  const handleAddFriend = async (friendId) => {
+    await userService.addFriend(friendId);
+    // await authService.updateUser(user);
+    // setUser(authService.getUser());
+    // console.log(user);
+    navigate("/profile/" + user._id);
+  };
+
+  const handleBet = async (eventId, betFormData) => {
+    await eventService.bet(eventId, betFormData);
+
+    navigate("/events/" + eventId);
+  };
+
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -59,10 +68,20 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              <Route path="/profile/:userId" element={<UserProfile handleDeleteUser={handleDeleteUser}/>} /> 
-              <Route path="/events/:eventId" element={<EventDetails />} />
-              <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
-              <Route path="/players" element={<AddFriend/>}/>
+              <Route path="/profile/:userId" element={<UserProfile />} />
+              <Route
+                path="/events/:eventId"
+                element={<EventDetails handleBet={handleBet} />}
+              />
+              <Route
+                path="/events/new"
+                element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
+              />
+              <Route
+                path="/players"
+                element={<AddFriend handleAddFriend={handleAddFriend} />}
+              />
+
             </>
           ) : (
             <Route path="/" element={<Landing />} />
