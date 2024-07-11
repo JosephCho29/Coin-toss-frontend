@@ -1,4 +1,4 @@
-/* General reset and basic styling */
+/* 
 body,
 html,
 main {
@@ -8,7 +8,6 @@ main {
     font-family: Arial, sans-serif;
 }
 
-/* Styling the main container */
 main {
     display: flex;
     flex-direction: column;
@@ -17,7 +16,6 @@ main {
     background-color: #f9f9f9;
 }
 
-/* Styling each user card */
 main a {
     display: flex;
     flex-direction: row;
@@ -58,4 +56,4 @@ main a button {
 
 main a button:hover {
     background-color: #0056b3;
-}
+} */

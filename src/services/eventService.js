@@ -38,7 +38,7 @@ const createEvent = async (eventFormData) => {
     }
 };
 
-const update = async function update(eventId, eventFormData) {
+const update = async (eventId, eventFormData) => {
     try {
         console.log(`${BASE_URL}/${eventId}`)
         const res = await fetch(`${BASE_URL}/${eventId}`, {

@@ -84,12 +84,14 @@ const App = () => {
               <Route path="/events/:eventId" element={<EventDetails handleBet={handleBet} />}/>
               <Route path="/players" element={<AddFriend handleAddFriend={handleAddFriend} />} />
 
+
             </>
           ) : (
             <Route path="/" element={<Landing />} />
           )}
           <Route path="/signup" element={<SignUpForm setUser={setUser} />} />
           <Route path="/signin" element={<SignInForm setUser={setUser} />} />
+          <Route path="*" element={<h1>Page Not HERE</h1>} />
         </Routes>
       </AuthedUserContext.Provider>
     </>

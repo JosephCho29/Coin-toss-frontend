@@ -50,7 +50,7 @@ const EventDetails = ({ handleBet }) => {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Bet</button>
       </form>
       <h2>Bettors</h2>
       <p>{new Date(event?.closeOut).toLocaleString()}</p>
@@ -60,7 +60,7 @@ const EventDetails = ({ handleBet }) => {
       {event?.owner === user._id && (
 
       <Link to={`/events/${eventId}/edit`}>Edit</Link>
-      )};
+      )}
     </main>
     </>
   );
