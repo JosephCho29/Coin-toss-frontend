@@ -8,7 +8,6 @@ const Events = (props) => {
   const user = useContext(AuthedUserContext);
   return (
     <main>
-      <h1>{user?.username}</h1>
       <h1>TOKENS: {user?.tokens}</h1>
       <FriendList />
       <LeaderBoard />

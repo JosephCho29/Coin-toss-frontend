@@ -5,6 +5,10 @@ import * as profileService from '../../services/profileService';
 import * as userService from '../../services/userService'
 
 
+import { Link, useParams } from "react-router-dom";
+import { AuthedUserContext } from "../../App";
+import { useState, useEffect, useContext } from "react";
+import * as profileService from "../../services/profileService";
 
 const UserProfile = (props) => {
     const [currentUser, setCurrentUser] = useState(null)

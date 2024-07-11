@@ -3,9 +3,12 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService";
 import * as profileService from "./services/profileService";
+<<<<<<<<< Temporary merge branch 1
+=========
 import * as userService from './services/userService'
 
 
+>>>>>>>>> Temporary merge branch 2
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
@@ -29,12 +32,11 @@ const App = () => {
       setEvents(eventsData);
     };
     if (user) fetchAllEvents();
-  }, [user]);
+  }, [navigate, user]);
 
   const handleSignout = () => {
     authService.signout();
     setUser(null);
-    setLoggedInUser(null);
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -43,6 +45,8 @@ const App = () => {
     navigate("/");
   };
 
+<<<<<<<<< Temporary merge branch 1
+=========
   const handleDeleteUser = async (userId) => {
     await userService.deleteUser(userId);
     
@@ -51,6 +55,7 @@ const App = () => {
   };
 
 
+>>>>>>>>> Temporary merge branch 2
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -59,12 +64,21 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
+<<<<<<<<< Temporary merge branch 1
+              <Route path="/profile/:userId" element={<UserProfile />} />
+              <Route path="/events/:eventId" element={<EventDetails />} />
+              <Route
+                path="/events/new"
+                element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
+              />
+              <Route path="/players" element={<AddFriend />} />
+=========
               <Route path="/profile/:userId" element={<UserProfile handleDeleteUser={handleDeleteUser}/>} /> 
               <Route path="/events/:eventId" element={<EventDetails />} />
               <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
               <Route path="/players" element={<AddFriend/>}/>
-              <Route path="/profile/:userId/edit" element={<UserProfile />} />
               
+>>>>>>>>> Temporary merge branch 2
             </>
           ) : (
             <Route path="/" element={<Landing />} />

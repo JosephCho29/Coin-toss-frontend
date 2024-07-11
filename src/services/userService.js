@@ -1,6 +1,44 @@
 const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/users`;
 
 const index = async () => {
+<<<<<<<<< Temporary merge branch 1
+  try {
+    const res = await fetch(BASE_URL, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const addFriend = async (friendId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${friendId}/add`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUser = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { index, addFriend, getUser };
+=========
     try {
         const res = await fetch(BASE_URL, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -26,30 +64,5 @@ const deleteUser = async (userId) => {
   };
 
 
-// const show = async (userId) => {
-//     try {
-//       const res = await fetch(`${BASE_URL}/${userId}`, {
-//         method: 'DELETE',
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem('token')}`,
-//         },
-//       });
-//       return ;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
- const show = async (userId) => {
-    try {
-      const response = await fetch(`${BASE_URL}/${userId}`);
-      if (!response.ok) throw new Error('Network response was not ok');
-      const userData = await response.json();
-      return userData;
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-      throw error;
-    }
-  };
-
-export { index, deleteUser, show };
+export { index, deleteUser };
+>>>>>>>>> Temporary merge branch 2
