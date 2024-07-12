@@ -22,17 +22,12 @@ const EventDetails = ({ handleBet }) => {
 
   useEffect(() => {
     checkBettorList();
-  }, []);
+  }, [event]);
 
   const checkBettorList = () => {
-    for (let i = 0; i < event?.betters.length; i++) {
-      console.log(event?.betters[i]._id);
-      // if (better._id === user._id) {
-      //   setInList(true);
-      // } else {
-      //   setInList(false);
-      // }
-    }
+    event?.betters.map((better) => {
+      better.better._id === user._id ? setInList(true) : setInList(false);
+    });
   };
 
   const handleSubmit = (e) => {
@@ -59,7 +54,7 @@ const EventDetails = ({ handleBet }) => {
             Check Winners
           </button>
         )}
-        {Date.now() < new Date(event?.closeOut) && (
+        {Date.now() < new Date(event?.closeOut) && !inList && (
           <form onSubmit={handleSubmit}>
             <div>
               <label>Win Condition:</label>
