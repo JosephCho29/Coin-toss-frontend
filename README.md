@@ -2,8 +2,6 @@
 
 <h3 align="center">Clint Eastman, Phillip Costas, Steven Macias, Steven Zhang, Joseph Cho</h3>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=josephcho29&label=Profile%20views&color=0e75b6&style=flat" alt="josephcho29" /> </p>
-
 - 🔭 Our Group Project is called **Coin-Toss**
 
 - 🌱 We are using **MERN Fullstack**
