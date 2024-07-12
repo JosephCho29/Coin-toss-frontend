@@ -44,7 +44,9 @@ const App = () => {
     setEvents(
       events.map((event) => (eventId === event._id ? updateEvent : event)),
     );
-    navigate("/");
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/events/" + eventId);
   };
 
   const handleAddEvent = async (eventFormData) => {

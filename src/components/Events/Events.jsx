@@ -3,7 +3,7 @@ import LeaderBoard from "../LeaderBoard/LeaderBoard";
 import { AuthedUserContext } from "../../App";
 import { useContext } from "react";
 import FriendList from "../FriendList/FriendList";
-import "./Events.css"; 
+import "./Events.css";
 
 const Navbar = () => {
   const user = useContext(AuthedUserContext);
@@ -28,7 +28,6 @@ const Events = (props) => {
   const user = useContext(AuthedUserContext);
   return (
     <>
-      {/* <Navbar /> */}
       <div className="container">
         <div className="left-side">
           <table className="events-table">
@@ -42,7 +41,9 @@ const Events = (props) => {
             <tbody>
               {props.events.map((event) => (
                 <tr key={event._id}>
-                  <td><Link to={`/events/${event._id}`}>{event.title}</Link></td>
+                  <td>
+                    <Link to={`/events/${event._id}`}>{event.title}</Link>
+                  </td>
                   <td>{event.pot}</td>
                   <td>{event.betAmount}</td>
                 </tr>
@@ -51,14 +52,12 @@ const Events = (props) => {
           </table>
         </div>
         <div className="right-side">
-          <LeaderBoard className="leaderboard" /> 
+          <LeaderBoard className="leaderboard" />
           <FriendList className="friendlist" />
         </div>
       </div>
     </>
-
   );
 };
 
 export default Events;
-
