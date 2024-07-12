@@ -35,9 +35,18 @@ const App = () => {
 
   const handleBet = async (eventId, betFormData) => {
     await eventService.bet(eventId, betFormData);
-    // navigate("/events/" + eventId);
-    navigate("/");
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/events/" + eventId);
   };
+
+  const handleCheck = async (eventId) => {
+    await eventService.claim(eventId)
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/profile/" + user._id)
+  };
+
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
 
@@ -78,7 +87,7 @@ const App = () => {
               <Route path="/" element={<Events events={events} />} />
               <Route
                 path="/events/:eventId"
-                element={<EventDetails handleBet={handleBet} />}
+                element={<EventDetails handleBet={handleBet} handleCheck={handleCheck} />}
               />
               <Route
                 path="/players"

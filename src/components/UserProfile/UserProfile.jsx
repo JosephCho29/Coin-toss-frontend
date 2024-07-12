@@ -26,7 +26,7 @@ const UserProfile = (props) => {
           <p>{currentUser?.user.tokens}</p>
         </div>
         <div className="bets">
-          Bets:
+          Events you bet on:
           {currentUser?.user.bets.map((bet) => (
             <div key={bet._id}>{bet?.title}</div>
           ))}

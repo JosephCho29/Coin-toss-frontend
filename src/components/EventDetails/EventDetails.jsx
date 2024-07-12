@@ -3,14 +3,13 @@ import { useState, useEffect, useContext } from "react";
 import * as eventService from "../../services/eventService";
 import { AuthedUserContext } from "../../App";
 
-const EventDetails = ({ handleBet }) => {
+const EventDetails = ({ handleBet, handleCheck }) => {
   const user = useContext(AuthedUserContext);
   const [event, setEvent] = useState(null);
   const [winningCondition, setWinningCondition] = useState("");
   const [amount, setAmount] = useState(0);
   const [inList, setInList] = useState(false);
   const { eventId } = useParams();
-  const [formData, setFormData] = useState();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -25,27 +24,14 @@ const EventDetails = ({ handleBet }) => {
     checkBettorList();
   }, [event]);
 
-  // const declareWinner = () => {
-  //   if (titleStr === winningCondition) {
-  //     // Need to set to either A or B!!!!!!! (If, or statement????? )
-  //     console.log("Winner declared!");
-  //   } else {
-  //     console.log("No winner yet.");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (Date.now() > new Date(event?.closeOut) && event?.pot !== 0) {
-  //     declareWinner();
-  //   }
-  // }, [event, winningCondition]);
-
-
-
   const checkBettorList = () => {
     event?.betters.map((better) => {
       better.better._id === user._id ? setInList(true) : setInList(false);
     });
+  };
+  const handleCheckWinners = (e) => {
+    // e.preventDefault();
+    handleCheck(eventId)
   };
 
   const handleSubmit = (e) => {
@@ -66,7 +52,7 @@ const EventDetails = ({ handleBet }) => {
         <p>Pot: {event?.pot}</p>
         <p>Bet Amount: {event?.betAmount}</p>
         {Date.now() > new Date(event?.closeOut) && event?.pot !== 0 && (
-          <button onClick={() => eventService.claim(eventId)}>
+          <button onClick={handleCheckWinners}>
             Check Winners
           </button>
         )}

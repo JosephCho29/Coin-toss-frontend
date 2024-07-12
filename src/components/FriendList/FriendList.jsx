@@ -19,7 +19,6 @@ const FriendList = () => {
 
   return (
     <main>
-      <h1>Friends</h1>
       {friends?.length === 0 && <p>No friends yet</p>}
       {friends?.map((friend, index) => (
         <ul key={index}>

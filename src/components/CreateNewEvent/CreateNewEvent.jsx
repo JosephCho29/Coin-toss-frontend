@@ -42,21 +42,25 @@ const CreateNewEvent = (props) => {
   return (
     <form onSubmit={handleSubmit} className="create-new-event-form">
       <div>
-        <label>Bet Title</label>
+        <label>Enter Team 1:</label>
+        <br></br>
         <input
           type="text"
           value={formData.teamA}
           onChange={(e) => setFormData({ ...formData, teamA: e.target.value })}
           className="narrow-input"
-          placeholder="Team A"
+          placeholder="Team 1"
           required
         />
+        <br></br>
+        <label>Enter Team 2:</label>
+        <br></br>
         <input
           type="text"
           value={formData.teamB}
           onChange={(e) => setFormData({ ...formData, teamB: e.target.value })}
           className="narrow-input"
-          placeholder="Team B"
+          placeholder="Team 2"
           required
         />
       </div>
@@ -112,11 +116,11 @@ const CreateNewEvent = (props) => {
           <option value={formData.teamB}>{formData.teamB}</option>
         </select>
       </div>
-      <div className="button-container">
+      {/* <div className="button-container"> */}
         <button className="submit-event-button" type="submit">
           Submit
         </button>
-      </div>
+      {/* </div> */}
     </form>
   );
 };

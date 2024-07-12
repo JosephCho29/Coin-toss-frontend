@@ -12,15 +12,9 @@ const NavBar = ({ handleSignout }) => {
 
                 {user && <Link to={`/profile/${user._id}`}>PROFILE</Link>}
                 <Link to='/'>HOME</Link>
-                <Link to='/players'>FRIENDS</Link>
-                <Link to="/events/new">NEW BET</Link>
+                <Link to='/players'>ADD FRIENDS</Link>
+                <Link to="/events/new">CREATE EVENT</Link>
                 <Link to="" onClick={handleSignout}>SIGN OUT</Link>
-
-                {/* <Link to="/profile">PROFILE</Link>
-          <Link to="/home">HOME</Link>
-          <Link to="/friends">FRIENDS</Link>
-          <Link to="/new-bet">NEW BET</Link>
-          <Link to="/sign-out">SIGN OUT</Link> */}
             </div>
             <div className="nav-right">
                 <span>{user?.username}</span>
