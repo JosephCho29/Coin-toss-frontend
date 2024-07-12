@@ -16,7 +16,7 @@ Currently, two official plugins are available:
 
 - 🌱 We are using **MERN Fullstack**
 
-- 📫 How to reach us **Josephwjcho93@gmail.com Philipcostas@gmail.com Stevenmcs22@gmail.com zjplove3618739792@gmail.com**
+- 📫 How to reach us **ClintEastman01@gmail.com Josephwjcho93@gmail.com Philipcostas@gmail.com Stevenmcs22@gmail.com zjplove3618739792@gmail.com**
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
