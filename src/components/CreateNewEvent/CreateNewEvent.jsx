@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
-import * as eventService from '../../services/eventService';
+import { useParams } from "react-router-dom";
+import * as eventService from "../../services/eventService";
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
@@ -29,7 +29,6 @@ const CreateNewEvent = (props) => {
       props.handleAddEvent(formData);
     }
 
-    // Reset form fields
     setFormData({
       title: "",
       betAmount: 0,
@@ -38,8 +37,6 @@ const CreateNewEvent = (props) => {
       winningCondition: "",
     });
   };
-
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,8 +54,12 @@ const CreateNewEvent = (props) => {
         <label>Amount:</label>
         <input
           type="number"
+          min="0"
+          step="1"
           value={formData.betAmount}
-          onChange={(e) => setFormData({ ...formData, betAmount: parseInt(e.target.value) })}
+          onChange={(e) =>
+            setFormData({ ...formData, betAmount: parseInt(e.target.value) })
+          }
           required
         />
       </div>
@@ -66,17 +67,23 @@ const CreateNewEvent = (props) => {
         <label>Description of the Bet:</label>
         <textarea
           value={formData.description}
-          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, description: e.target.value })
+          }
           required
         />
       </div>
       <div>
         <label>Length of the Bet:</label>
         <input
-          type="text"
+          type="number"
+          min="0"
+          step="1"
           className="narrow-input"
           value={formData.closeOut}
-          onChange={(e) => setFormData({ ...formData, closeOut: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, closeOut: e.target.value })
+          }
           required
         />
       </div>
@@ -86,11 +93,15 @@ const CreateNewEvent = (props) => {
           type="text"
           className="narrow-input"
           value={formData.winningCondition}
-          onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, winningCondition: e.target.value })
+          }
           required
         />
       </div>
-      <button className="submit-event-button" type="submit">Submit</button>
+      <button className="submit-event-button" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
