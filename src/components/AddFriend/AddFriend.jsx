@@ -23,7 +23,7 @@ const AddFriend = ({ handleAddFriend }) => {
       setAllUsers(filteredUsers);
     };
     fetchUsers();
-  }, [loggedInUser]);
+  }, []);
 
   return (
     <main className="friend-list-page">
