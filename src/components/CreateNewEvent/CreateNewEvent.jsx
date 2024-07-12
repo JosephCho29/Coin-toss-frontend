@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import * as eventService from "../../services/eventService";
+import { useParams } from 'react-router-dom';
+import * as eventService from '../../services/eventService';
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
@@ -28,14 +28,14 @@ const CreateNewEvent = (props) => {
     } else {
       props.handleAddEvent(formData);
     }
-
+    
     setFormData({
       title: "",
       betAmount: 0,
       description: "",
       closeOut: 0,
       winningCondition: "",
-    });
+    }); 
   };
 
   return (
@@ -88,16 +88,17 @@ const CreateNewEvent = (props) => {
         />
       </div>
       <div>
-        <label>Win Condition:</label>
-        <input
-          type="text"
-          className="narrow-input"
-          value={formData.winningCondition}
-          onChange={(e) =>
-            setFormData({ ...formData, winningCondition: e.target.value })
-          }
-          required
-        />
+      <label>Winning Condition</label>
+      <select
+        value={formData.winningCondition}
+        onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
+        className="narrow-input"
+        required
+      >
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+      </select>
+
       </div>
       <button className="submit-event-button" type="submit">
         Submit

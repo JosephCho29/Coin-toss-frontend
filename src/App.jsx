@@ -4,7 +4,6 @@ import * as authService from "./services/authService";
 import * as eventService from "./services/eventService/";
 import * as userService from "./services/userService";
 import SignInForm from "./components/SignInForm/SignInForm";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
 import NavBar from "./components/NavBar/NavBar";
 import EventDetails from "./components/EventDetails/EventDetails";
@@ -19,6 +18,7 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -40,14 +40,9 @@ const App = () => {
   };
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
-    console.log("eventId:", eventId, "eventFormData:", eventFormData);
-
+    
     const updateEvent = await eventService.update(eventId, eventFormData);
-
-    setEvents(
-      events.map((event) => (eventId === event._id ? updateEvent : event)),
-    );
-
+    setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
     navigate(`/events/${eventId}`);
   };
 
