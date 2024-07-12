@@ -52,6 +52,7 @@ const Events = (props) => {
         </div>
         <div className="right-side">
           <LeaderBoard className="leaderboard" /> 
+          <h1>Friend list</h1>
           <FriendList className="friendlist" />
         </div>
       </div>

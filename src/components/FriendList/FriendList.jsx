@@ -27,6 +27,7 @@ const FriendList = () => {
         </ul>
       ))}
     </main>
+  
   );
 };
 

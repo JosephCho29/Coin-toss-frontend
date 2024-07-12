@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import * as eventService from '../../services/eventService';
+import "./CreateNewEvent.css"; 
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
@@ -39,7 +40,7 @@ const CreateNewEvent = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="create-new-event-form">
       <div>
         <label>Bet Title:</label>
         <input
@@ -88,21 +89,22 @@ const CreateNewEvent = (props) => {
         />
       </div>
       <div>
-      <label>Winning Condition</label>
-      <select
-        value={formData.winningCondition}
-        onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
-        className="narrow-input"
-        required
-      >
-        <option value="Team A">Team A</option>
-        <option value="Team B">Team B</option>
-      </select>
-
+        <label>Winning Condition:</label>
+        <select
+          value={formData.winningCondition}
+          onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
+          className="narrow-input"
+          required
+        >
+          <option value="Team A">Team A</option>
+          <option value="Team B">Team B</option>
+        </select>
       </div>
-      <button className="submit-event-button" type="submit">
-        Submit
-      </button>
+      <div className="button-container">
+        <button className="submit-event-button" type="submit">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

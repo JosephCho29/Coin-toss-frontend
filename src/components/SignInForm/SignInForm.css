@@ -19,8 +19,8 @@
     max-width: 400px;
     width: 100%;
     text-align: center;
-    margin-bottom: 1200px;
     filter: brightness(1.2); 
+    
 }
 
 form {
@@ -38,11 +38,13 @@ input[type="text"], input[type="password"] {
     margin: 5px 0 22px 0;
     border: none;
     background: #f1f1f1;
+    display: center;
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
     background-color: #ddd;
     outline: none;
+    display: center;
 }
 
 .button-container {

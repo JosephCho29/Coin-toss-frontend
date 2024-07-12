@@ -76,19 +76,14 @@ const Landing = () => {
     <div id="root">
       <landing-main>
         <div className="marquee">
-          <div className="marquee-content">
-            WELCOME TO THE COIN - BET YOUR FAVORITE
-            TEAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            JOHN WON
-            $5000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            SAM WON
-            $1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            STEVEN WON
-            $5000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            JOHN WON $500000
+          <div className="marquee-content" style={{ color: 'red' }}>
+            WELCOME TO THE COIN - BET YOUR FAVORITE TEAMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            JOHN WON <span role="img" aria-label="coin">💰</span>5000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            SAM WON <span role="img" aria-label="coin">💰</span>1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            STEVEN WON <span role="img" aria-label="coin">💰</span>5000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            BILL WON <span role="img" aria-label="coin">💰</span>500000
           </div>
         </div>
-
         <div className="header">
           <a href="/signin">Sign In</a>
           <a href="/signup">Sign Up</a>
@@ -99,6 +94,7 @@ const Landing = () => {
         <div className="info-text">
           <h2>Explore the world of Cointoss sports and gaming</h2>
           <p>
+            
             The best place to bet on sports, play online games, and build your
             team.
           </p>
