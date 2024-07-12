@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import * as eventService from '../../services/eventService';
-import Dropdown from "../DropDown/DropDown";
+// import Dropdown from "../DropDown/DropDown";
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
-  const options = ['Win', 'Loss'];
+  // const options = ['Team A', 'Team B'];
   const [formData, setFormData] = useState({
     title: "",
     betAmount: 0,
@@ -31,6 +31,8 @@ const CreateNewEvent = (props) => {
       props.handleAddEvent(formData);
     }
 
+
+
     // Reset form fields
     setFormData({
       title: "",
@@ -39,6 +41,9 @@ const CreateNewEvent = (props) => {
       closeOut: 0,
       winningCondition: "",
     });
+    
+   
+      
   };
 
 
@@ -83,8 +88,16 @@ const CreateNewEvent = (props) => {
         />
       </div>
       <div>
-        <label>Win Condition:</label>
-        <Dropdown options={options} />
+      <label>Winning Condition</label>
+      <select
+        value={formData.winningCondition}
+        onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
+        className="narrow-input"
+        required
+      >
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+      </select>
       </div>
       <button className="submit-event-button" type="submit">Submit</button>
     </form>
