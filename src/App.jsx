@@ -12,6 +12,7 @@ import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
 import UserProfile from "./components/UserProfile/UserProfile";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 export const AuthedUserContext = createContext(null);
 
@@ -44,7 +45,7 @@ const App = () => {
     console.log('eventId:', eventId, 'eventFormData:', eventFormData);
     const updateEvent = await eventService.update(eventId, eventFormData);
     setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
-    navigate(`/events/${eventId}`);
+    navigate("/");
   };
 
   const handleAddEvent = async (eventFormData) => {
