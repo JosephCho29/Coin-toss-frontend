@@ -10,6 +10,7 @@ const EventDetails = ({ handleBet }) => {
   const [amount, setAmount] = useState(0);
   const [inList, setInList] = useState(false);
   const { eventId } = useParams();
+  const [formData, setFormData] = useState()
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -62,15 +63,18 @@ const EventDetails = ({ handleBet }) => {
         {Date.now() < new Date(event?.closeOut) && (
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Win Condition:</label>
-              <input
-                type="text"
-                name="winningCondition"
-                value={winningCondition}
-                onChange={(e) => setWinningCondition(e.target.value)}
-                required
-              />
-            </div>
+            <label>Winning Condition</label>
+         <select
+             value={formData.winningCondition}
+             onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })
+            }
+            className="narrow-input"
+            required
+             >
+        <option value="Team A">Team A</option>
+        <option value="Team B">Team B</option>
+      </select>
+      </div>
             <button type="submit">Bet</button>
           </form>
         )}
