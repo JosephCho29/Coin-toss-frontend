@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
-import * as eventService from '../../services/eventService';
+import { useParams } from "react-router-dom";
+import * as eventService from "../../services/eventService";
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
@@ -28,28 +28,38 @@ const CreateNewEvent = (props) => {
     } else {
       props.handleAddEvent(formData);
     }
-    
+
     setFormData({
       title: "",
       betAmount: 0,
       description: "",
       closeOut: 0,
       winningCondition: "",
-    }); 
+    });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Bet Title:</label>
+        <label>Bet Title</label>
         <input
           type="text"
+          value={formData.teamA}
+          onChange={(e) => setFormData({ ...formData, teamA: e.target.value })}
           className="narrow-input"
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          placeholder="Team A"
+          required
+        />
+        <input
+          type="text"
+          value={formData.teamB}
+          onChange={(e) => setFormData({ ...formData, teamB: e.target.value })}
+          className="narrow-input"
+          placeholder="Team B"
           required
         />
       </div>
+
       <div>
         <label>Amount:</label>
         <input
@@ -88,18 +98,18 @@ const CreateNewEvent = (props) => {
         />
       </div>
       <div>
-      <label>Winning Condition</label>
-      <select
-        value={formData.winningCondition}
-        onChange={(e) =>
+        <label>Winning Condition</label>
+        <select
+          value={formData.winningCondition}
+          onChange={(e) =>
             setFormData({ ...formData, winningCondition: e.target.value })
           }
-        className="narrow-input"
-        required
-      >
-        <option value="Team A">Team A</option>
-        <option value="Team B">Team B</option>
-      </select>
+          className="narrow-input"
+          required
+        >
+          <option value="formData.teamA">{formData.teamA}</option>
+          <option value="formData.teamB">{formData.teamB}</option>
+        </select>
       </div>
       <button className="submit-event-button" type="submit">
         Submit
