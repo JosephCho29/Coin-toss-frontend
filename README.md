@@ -1,11 +1,3 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Coin-Toss
 
 <h3 align="center">Clint Eastman, Phillip Costas, Steven Macias, Steven Zhang, Joseph Cho</h3>
@@ -20,8 +12,7 @@ Currently, two official plugins are available:
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
-2. [Installation](#installation)
-3. [Running the Application](#running-the-application)
+2. [Installation & Running the Application](#installation)
 4. [Description](#description)
 5. [Credits](#credits)
 6. [License](#license)
@@ -35,6 +26,16 @@ Before you begin, ensure you have met the following requirements:
 - **Node.js**: Install Node.js from [here](https://nodejs.org/).
 - **MongoDB**: Install MongoDB from [here](https://www.mongodb.com/try/download/community).
 
+## Installation & Running the Application
+
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
 ## Description
