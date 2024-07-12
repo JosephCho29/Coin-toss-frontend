@@ -9,9 +9,12 @@ Currently, two official plugins are available:
 # coin-toss-frontend
 
 
-THINGS TO ADD 
-- Add a friend to the bet
-- Private Bet - with a friend 
+THINGS TO DO
+- Take off play online games 
+- The best place to place bets between just you and your friends
+- Not sure about the pay option icons at the bottom of the landing page as we are not expecting forms of payment. 
+- Freinds do not display on the home page, but they do show up on the user profile 
+- Resizing of some of the CSS so we do not have to zoom in and out 
 - 
 
 event.betters > 0 cannot - delete - bet ??

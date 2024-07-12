@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import * as eventService from '../../services/eventService';
+import Dropdown from "../DropDown/DropDown";
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
+  const options = ['Win', 'Loss'];
   const [formData, setFormData] = useState({
     title: "",
     betAmount: 0,
@@ -82,13 +84,7 @@ const CreateNewEvent = (props) => {
       </div>
       <div>
         <label>Win Condition:</label>
-        <input
-          type="text"
-          className="narrow-input"
-          value={formData.winningCondition}
-          onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
-          required
-        />
+        <Dropdown options={options} />
       </div>
       <button className="submit-event-button" type="submit">Submit</button>
     </form>
