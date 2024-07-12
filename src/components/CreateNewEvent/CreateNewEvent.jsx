@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import * as eventService from '../../services/eventService';
+import "./CreateNewEvent.css"; 
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
@@ -28,28 +29,42 @@ const CreateNewEvent = (props) => {
     } else {
       props.handleAddEvent(formData);
     }
-    
+
     setFormData({
       title: "",
       betAmount: 0,
       description: "",
       closeOut: 0,
       winningCondition: "",
-    }); 
+    });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="create-new-event-form">
       <div>
-        <label>Bet Title:</label>
+        <label>Enter Team 1:</label>
+        <br></br>
         <input
           type="text"
+          value={formData.teamA}
+          onChange={(e) => setFormData({ ...formData, teamA: e.target.value })}
           className="narrow-input"
-          value={formData.title}
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          placeholder="Team 1"
+          required
+        />
+        <br></br>
+        <label>Enter Team 2:</label>
+        <br></br>
+        <input
+          type="text"
+          value={formData.teamB}
+          onChange={(e) => setFormData({ ...formData, teamB: e.target.value })}
+          className="narrow-input"
+          placeholder="Team 2"
           required
         />
       </div>
+
       <div>
         <label>Amount:</label>
         <input
@@ -88,21 +103,24 @@ const CreateNewEvent = (props) => {
         />
       </div>
       <div>
-      <label>Winning Condition</label>
-      <select
-        value={formData.winningCondition}
-        onChange={(e) => setFormData({ ...formData, winningCondition: e.target.value })}
-        className="narrow-input"
-        required
-      >
-        <option value="Team A">Team A</option>
-        <option value="Team B">Team B</option>
-      </select>
-
+        <label>Winning Condition</label>
+        <select
+          value={formData.winningCondition}
+          onChange={(e) =>
+            setFormData({ ...formData, winningCondition: e.target.value })
+          }
+          className="narrow-input"
+          required
+        >
+          <option value={formData.teamA}>{formData.teamA}</option>
+          <option value={formData.teamB}>{formData.teamB}</option>
+        </select>
       </div>
-      <button className="submit-event-button" type="submit">
-        Submit
-      </button>
+      {/* <div className="button-container"> */}
+        <button className="submit-event-button" type="submit">
+          Submit
+        </button>
+      {/* </div> */}
     </form>
   );
 };

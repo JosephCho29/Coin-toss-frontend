@@ -4,6 +4,7 @@ import * as authService from "./services/authService";
 import * as eventService from "./services/eventService/";
 import * as userService from "./services/userService";
 import SignInForm from "./components/SignInForm/SignInForm";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
 import NavBar from "./components/NavBar/NavBar";
 import EventDetails from "./components/EventDetails/EventDetails";
@@ -11,7 +12,6 @@ import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
 import UserProfile from "./components/UserProfile/UserProfile";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 export const AuthedUserContext = createContext(null);
 
@@ -19,7 +19,6 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -36,15 +35,28 @@ const App = () => {
 
   const handleBet = async (eventId, betFormData) => {
     await eventService.bet(eventId, betFormData);
-    // navigate("/events/" + eventId);
-    navigate("/");
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/events/" + eventId);
   };
 
+  const handleCheck = async (eventId) => {
+    await eventService.claim(eventId)
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/profile/" + user._id)
+  };
+
+
   const handleUpdateEvent = async (eventId, eventFormData) => {
-    
+
     const updateEvent = await eventService.update(eventId, eventFormData);
-    setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
-    navigate("/");
+    setEvents(
+      events.map((event) => (eventId === event._id ? updateEvent : event)),
+    );
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/events/" + eventId);
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -52,17 +64,15 @@ const App = () => {
     setEvents([newEvent, ...events]);
     navigate("/");
   };
-
   const handleAddFriend = async (friendId) => {
     await userService.addFriend(friendId);
-    // await userService.updateToken();
-    // setUser(authService.getUser());
+    await userService.updateToken();
+    setUser(authService.getUser());
     navigate("/profile/" + user._id);
   };
 
   const handleDeleteUser = async (userId) => {
     await userService.deleteUser(userId);
-
     setUser(null);
     navigate("/");
   };
@@ -77,7 +87,7 @@ const App = () => {
               <Route path="/" element={<Events events={events} />} />
               <Route
                 path="/events/:eventId"
-                element={<EventDetails handleBet={handleBet} />}
+                element={<EventDetails handleBet={handleBet} handleCheck={handleCheck} />}
               />
               <Route
                 path="/players"

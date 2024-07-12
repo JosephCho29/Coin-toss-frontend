@@ -9,7 +9,6 @@ const FriendList = () => {
 
   useEffect(() => {
     const fetchAllFriends = async () => {
-    
       const friendsData = await Promise.all(
         user?.friends?.map((friendId) => userService.getUserName(friendId)),
       );
@@ -27,9 +26,8 @@ const FriendList = () => {
         </ul>
       ))}
     </main>
+  
   );
 };
-
-
 
 export default FriendList;

@@ -1,0 +1,84 @@
+
+.user-profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+    margin-top: 100px;
+  }
+  
+  .profile-section, .friends-section {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .events-section {
+    flex: 2;
+    margin: 0 10px 0 0;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: #1e1e1e;
+    text-align: center;
+  }
+  
+  .friends-section {
+    margin-left: 0;
+    border-radius: 0 8px 8px 0;
+    text-align: center;
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 2px solid #ffffff;
+  }
+  
+  .tokens, .bets, .events, .friends {
+    margin-top: 20px;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  .delete-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #ff1744;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff4569;
+  }
+  
+  p, div {
+    color: #ffffff;
+  }
+  

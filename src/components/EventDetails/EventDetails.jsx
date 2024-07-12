@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import * as eventService from "../../services/eventService";
 import { AuthedUserContext } from "../../App";
 
-const EventDetails = ({ handleBet }) => {
+const EventDetails = ({ handleBet, handleCheck }) => {
   const user = useContext(AuthedUserContext);
   const [event, setEvent] = useState(null);
   const [winningCondition, setWinningCondition] = useState("");
@@ -22,17 +22,16 @@ const EventDetails = ({ handleBet }) => {
 
   useEffect(() => {
     checkBettorList();
-  }, []);
+  }, [event]);
 
   const checkBettorList = () => {
-    for (let i = 0; i < event?.betters.length; i++) {
-      console.log(event?.betters[i]._id);
-      // if (better._id === user._id) {
-      //   setInList(true);
-      // } else {
-      //   setInList(false);
-      // }
-    }
+    event?.betters.map((better) => {
+      better.better._id === user._id ? setInList(true) : setInList(false);
+    });
+  };
+  const handleCheckWinners = (e) => {
+    // e.preventDefault();
+    handleCheck(eventId)
   };
 
   const handleSubmit = (e) => {
@@ -46,30 +45,33 @@ const EventDetails = ({ handleBet }) => {
     setWinningCondition("");
     setAmount(0);
   };
-
   return (
     <>
       <main>
         <h2>{event?.title}</h2>
-        <p>Description: {event?.description}</p>
         <p>Pot: {event?.pot}</p>
         <p>Bet Amount: {event?.betAmount}</p>
         {Date.now() > new Date(event?.closeOut) && event?.pot !== 0 && (
-          <button onClick={() => eventService.claim(eventId)}>
+          <button onClick={handleCheckWinners}>
             Check Winners
           </button>
         )}
-        {Date.now() < new Date(event?.closeOut) && (
+        {Date.now() < new Date(event?.closeOut) && !inList && (
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Win Condition:</label>
-              <input
-                type="text"
-                name="winningCondition"
+              <label>Winning Condition</label>
+              <select
+              name="winningCondition"
                 value={winningCondition}
-                onChange={(e) => setWinningCondition(e.target.value)}
+                onChange={(e) => 
+                  setWinningCondition(e.target.value)
+                }
+                className="narrow-input"
                 required
-              />
+              >
+                <option value={event?.teamA}>{event?.teamA}</option>
+                <option value={event?.teamB}>{event?.teamB}</option>
+              </select>
             </div>
             <button type="submit">Bet</button>
           </form>
