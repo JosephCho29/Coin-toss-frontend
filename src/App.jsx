@@ -42,7 +42,7 @@ const App = () => {
   const handleBet = async (eventId, betFormData) => {
     await eventService.bet(eventId, betFormData);
     // navigate("/events/" + eventId);
-    navigate("/")
+    navigate("/");
   };
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
@@ -51,7 +51,6 @@ const App = () => {
     setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
     navigate(`/events/${eventId}`);
   };
-
 
   const handleAddEvent = async (eventFormData) => {
     const newEvent = await eventService.createEvent(eventFormData);
@@ -66,12 +65,11 @@ const App = () => {
     navigate("/profile/" + user._id);
   };
 
-  
   const handleDeleteUser = async (userId) => {
     await userService.deleteUser(userId);
-    
-    setUser(null)
-    navigate('/')
+
+    setUser(null);
+    navigate("/");
   };
 
   return (
@@ -82,11 +80,28 @@ const App = () => {
           {user ? (
             <>
               <Route path="/" element={<Events events={events} />} />
-              <Route path="/events/:eventId" element={<EventDetails handleBet={handleBet} />}/>
-              <Route path="/players" element={<AddFriend handleAddFriend={handleAddFriend} />} />
-              <Route path="/events/new" element={<CreateNewEvent handleAddEvent={handleAddEvent} />} />
-              <Route path="/profile/:userId" element={<UserProfile handleDeleteUser={handleDeleteUser}/>} />
-              <Route path="/events/:eventId/edit" element={<CreateNewEvent handleUpdateEvent={handleUpdateEvent} />}/>
+              <Route
+                path="/events/:eventId"
+                element={<EventDetails handleBet={handleBet} />}
+              />
+              <Route
+                path="/players"
+                element={<AddFriend handleAddFriend={handleAddFriend} />}
+              />
+              <Route
+                path="/events/new"
+                element={<CreateNewEvent handleAddEvent={handleAddEvent} />}
+              />
+              <Route
+                path="/profile/:userId"
+                element={<UserProfile handleDeleteUser={handleDeleteUser} />}
+              />
+              <Route
+                path="/events/:eventId/edit"
+                element={
+                  <CreateNewEvent handleUpdateEvent={handleUpdateEvent} />
+                }
+              />
             </>
           ) : (
             <Route path="/" element={<Landing />} />
