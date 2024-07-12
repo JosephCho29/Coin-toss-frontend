@@ -55,7 +55,6 @@ const App = () => {
     setEvents([newEvent, ...events]);
     navigate("/");
   };
-
   const handleAddFriend = async (friendId) => {
     await userService.addFriend(friendId);
     await userService.updateToken();

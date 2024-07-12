@@ -107,8 +107,8 @@ const CreateNewEvent = (props) => {
           className="narrow-input"
           required
         >
-          <option value="formData.teamA">{formData.teamA}</option>
-          <option value="formData.teamB">{formData.teamB}</option>
+          <option value={formData.teamA}>{formData.teamA}</option>
+          <option value={formData.teamB}>{formData.teamB}</option>
         </select>
       </div>
       <button className="submit-event-button" type="submit">
