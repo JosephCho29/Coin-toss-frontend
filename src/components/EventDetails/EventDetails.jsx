@@ -10,6 +10,7 @@ const EventDetails = ({ handleBet }) => {
   const [amount, setAmount] = useState(0);
   const [inList, setInList] = useState(false);
   const { eventId } = useParams();
+  const [formData, setFormData] = useState();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -23,6 +24,30 @@ const EventDetails = ({ handleBet }) => {
   useEffect(() => {
     checkBettorList();
   }, [event]);
+
+  // winning condtion ---------- Splitting Dynamically to not be just team a or b
+
+  const titleStr = event?.title;
+  console.log(titleStr);
+  const words = titleStr?.split(" ");
+  console.log(words);
+
+  const declareWinner = () => {
+    if (titleStr === winningCondition) {
+      // Need to set to either A or B!!!!!!! (If, or statement????? )
+      console.log("Winner declared!");
+    } else {
+      console.log("No winner yet.");
+    }
+  };
+
+  useEffect(() => {
+    if (Date.now() > new Date(event?.closeOut) && event?.pot !== 0) {
+      declareWinner();
+    }
+  }, [event, winningCondition]);
+
+  // winning condition --------------
 
   const checkBettorList = () => {
     event?.betters.map((better) => {
@@ -46,7 +71,23 @@ const EventDetails = ({ handleBet }) => {
     <>
       <main>
         <h2>{event?.title}</h2>
-        <p>Description: {event?.description}</p>
+        <label>Title</label>
+        <input
+          type="text"
+          value={formData.teamA}
+          onChange={(e) => setFormData({ ...formData, teamA: e.target.value })}
+          className="narrow-input"
+          placeholder="Team A"
+          required
+        />
+        <input
+          type="text"
+          value={formData.teamB}
+          onChange={(e) => setFormData({ ...formData, teamB: e.target.value })}
+          className="narrow-input"
+          placeholder="Team B"
+          required
+        />
         <p>Pot: {event?.pot}</p>
         <p>Bet Amount: {event?.betAmount}</p>
         {Date.now() > new Date(event?.closeOut) && event?.pot !== 0 && (
@@ -57,14 +98,18 @@ const EventDetails = ({ handleBet }) => {
         {Date.now() < new Date(event?.closeOut) && !inList && (
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Win Condition:</label>
-              <input
-                type="text"
-                name="winningCondition"
-                value={winningCondition}
-                onChange={(e) => setWinningCondition(e.target.value)}
+              <label>Winning Condition</label>
+              <select
+                value={formData.winningCondition}
+                onChange={(e) =>
+                  setFormData({ ...formData, winningCondition: e.target.value })
+                }
+                className="narrow-input"
                 required
-              />
+              >
+                <option value="formData.teamA">{formData.teamA}</option>
+                <option value="formData.teamB">{formData.teamB}</option>
+              </select>
             </div>
             <button type="submit">Bet</button>
           </form>
