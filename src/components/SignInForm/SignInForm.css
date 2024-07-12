@@ -1,4 +1,6 @@
+
 .signin-background {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,6 +8,7 @@
     background: url('./login.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
+
 }
 
 .signin-container {

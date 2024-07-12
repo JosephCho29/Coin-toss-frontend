@@ -8,7 +8,6 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Coin-Toss
 
-
 <h3 align="center">Clint Eastman, Philip Costas, Steven Macias, Steven Zhang, Joseph Cho</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=josephcho29&label=Profile%20views&color=0e75b6&style=flat" alt="josephcho29" /> </p>

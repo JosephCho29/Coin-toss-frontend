@@ -25,7 +25,7 @@ const addFriend = async (friendId) => {
   }
 };
 
-const getUser = async (userId) => {
+const getUserName = async (userId) => {
   try {
     const res = await fetch(`${BASE_URL}/${userId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -36,4 +36,18 @@ const getUser = async (userId) => {
   }
 };
 
-export { index, addFriend, getUser };
+const deleteUser = async (userId) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${userId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { index, addFriend, getUserName, deleteUser };
