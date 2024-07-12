@@ -1,10 +1,8 @@
 import { useState, createContext, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-
 import * as authService from "./services/authService";
 import * as eventService from "./services/eventService/";
-import * as userService from './services/userService'
-
+import * as userService from "./services/userService";
 import SignInForm from "./components/SignInForm/SignInForm";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import Landing from "./components/Landing/Landing";
@@ -14,9 +12,6 @@ import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
 import UserProfile from "./components/UserProfile/UserProfile";
-
-
-
 
 export const AuthedUserContext = createContext(null);
 

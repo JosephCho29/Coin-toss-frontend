@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import * as eventService from "../../services/eventService";
-// import Dropdown from "../DropDown/DropDown";
+import { useParams } from 'react-router-dom';
+import * as eventService from '../../services/eventService';
 
 const CreateNewEvent = (props) => {
   const { eventId } = useParams();
-  // const options = ['Team A', 'Team B'];
   const [formData, setFormData] = useState({
     title: "",
     betAmount: 0,
@@ -30,20 +28,14 @@ const CreateNewEvent = (props) => {
     } else {
       props.handleAddEvent(formData);
     }
-
-
-
-    // Reset form fields
+    
     setFormData({
       title: "",
       betAmount: 0,
       description: "",
       closeOut: 0,
       winningCondition: "",
-    });
-    
-   
-      
+    }); 
   };
 
   return (
