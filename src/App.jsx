@@ -12,7 +12,6 @@ import Events from "./components/Events/Events";
 import CreateNewEvent from "./components/CreateNewEvent/CreateNewEvent";
 import AddFriend from "./components/AddFriend/AddFriend";
 import UserProfile from "./components/UserProfile/UserProfile";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 export const AuthedUserContext = createContext(null);
 
@@ -20,7 +19,6 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser());
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -42,10 +40,14 @@ const App = () => {
   };
 
   const handleUpdateEvent = async (eventId, eventFormData) => {
-    console.log('eventId:', eventId, 'eventFormData:', eventFormData);
+
     const updateEvent = await eventService.update(eventId, eventFormData);
-    setEvents(events.map((event) => (eventId === event._id ? updateEvent : event)));
-    navigate("/");
+    setEvents(
+      events.map((event) => (eventId === event._id ? updateEvent : event)),
+    );
+    await userService.updateToken();
+    setUser(authService.getUser());
+    navigate("/events/" + eventId);
   };
 
   const handleAddEvent = async (eventFormData) => {
@@ -56,14 +58,13 @@ const App = () => {
 
   const handleAddFriend = async (friendId) => {
     await userService.addFriend(friendId);
-    // await userService.updateToken();
-    // setUser(authService.getUser());
+    await userService.updateToken();
+    setUser(authService.getUser());
     navigate("/profile/" + user._id);
   };
 
   const handleDeleteUser = async (userId) => {
     await userService.deleteUser(userId);
-
     setUser(null);
     navigate("/");
   };
