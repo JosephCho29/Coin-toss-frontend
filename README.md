@@ -74,7 +74,7 @@ This is a lighthearted sportsbetting app with friends using MERN and JS.
 Contributors: 
 
 [![Gmail](https://img.shields.io/badge/-Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your-email@gmail.com)
- **Clint Eastman:** ClintEastman01@gmail.com
+ **Clint Eastman:** clint.eastman064@gmail.com
 
 [![Gmail](https://img.shields.io/badge/-Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:your-email@gmail.com)
  **Joseph Cho:** Josephwjcho93@gmail.com*
